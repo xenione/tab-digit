@@ -10,6 +10,32 @@ public class MatrixHelper {
 
     public static final Camera camera = new Camera();
 
+    /**
+     * Matrix with 180 degrees x rotation defined
+     */
+    public static final Matrix MIRROR_X = new Matrix();
+    static {
+        MatrixHelper.rotateX(MIRROR_X, 180);
+    }
+
+    /**
+     * Matrix with 0 degrees x rotation defined
+     */
+    public static final Matrix ROTATE_X_0 = new Matrix();
+
+    static {
+        MatrixHelper.rotateX(ROTATE_X_0, 0);
+    }
+
+    /**
+     * Matrix with 90 degrees x rotation defined
+     */
+    public static final Matrix ROTATE_X_90 = new Matrix();
+
+    static {
+        MatrixHelper.rotateX(ROTATE_X_90, 90);
+    }
+
     public static void mirrorX(Matrix matrix) {
         rotateX(matrix, 180);
     }

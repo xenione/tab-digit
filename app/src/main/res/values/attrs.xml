@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CharView">
+        <attr name="textSize" format="dimension" />
+        <attr name="padding" format="dimension" />
+        <attr name="cornerSize" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="backgroundColor" format="color" />
+    </declare-styleable>
+</resources>
