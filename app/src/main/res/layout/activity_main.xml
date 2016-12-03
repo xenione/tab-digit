@@ -1,14 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
     tools:context="com.xenione.demos.digit.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Text size" />
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/size_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="300" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Padding size" />
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/padding_size_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:text="Corner size" />
+
+    <android.support.v7.widget.AppCompatSeekBar
+        android:id="@+id/corner_size_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="10dp"
+            android:text="Background:" />
+
+        <com.xenione.demos.digit.ColorChooserView
+            android:id="@+id/Background_color_chooser"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingLeft="50dp"
+            android:paddingRight="10dp"
+            android:text="Text:" />
+
+        <com.xenione.demos.digit.ColorChooserView
+            android:id="@+id/text_color_chooser"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+
+    </LinearLayout>
 
     <com.xenione.demos.digit.CharView
         android:id="@+id/charView1"
-        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        custom:backgroundColor="#000000"
+        custom:padding="10dp"
+        custom:textSize="40dp" />
 
-</FrameLayout>
+</LinearLayout>

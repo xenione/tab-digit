@@ -12,7 +12,6 @@ import android.graphics.RectF;
 import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
-import android.util.TypedValue;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -74,17 +73,19 @@ public class CharView extends View implements Runnable {
         initPaints();
         initFolders();
 
+        int padding = -1;
+
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CharView, 0, 0);
-        final int N = ta.getIndexCount();
-        for (int i = 0; i < N; i++) {
+        final int num = ta.getIndexCount();
+        for (int i = 0; i < num; i++) {
             int attr = ta.getIndex(i);
             switch (attr) {
                 case R.styleable.CharView_textSize: {
-                    mTextSize = (int) ta.getDimension(attr, 20.0f);
+                    mTextSize = ta.getDimensionPixelSize(attr, -1);
                     break;
                 }
                 case R.styleable.CharView_padding: {
-                    mPadding = ta.getDimensionPixelSize(attr, 5);
+                    padding = ta.getDimensionPixelSize(attr, -1);
                     break;
                 }
                 case R.styleable.CharView_textColor: {
@@ -100,6 +101,10 @@ public class CharView extends View implements Runnable {
                     break;
                 }
             }
+        }
+
+        if (padding > 0) {
+            mPadding = padding;
         }
     }
 
@@ -201,8 +206,12 @@ public class CharView extends View implements Runnable {
     }
 
     public void setTextSize(int size) {
-        mTextSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, getResources().getDisplayMetrics());
+        mTextSize = size;
         requestLayout();
+    }
+
+    public int getTextSize() {
+        return mTextSize;
     }
 
     public void setPadding(int padding) {
@@ -210,16 +219,32 @@ public class CharView extends View implements Runnable {
         requestLayout();
     }
 
+    public int getPadding(){
+        return mPadding;
+    }
+
     public void setTextColor(int color) {
         mNumberPaint.setColor(color);
+    }
+
+    public int getTextColor() {
+        return mNumberPaint.getColor();
     }
 
     public void setCornerSize(int cornerSize) {
         mCornerSize = cornerSize;
     }
 
+    public int getCornerSize() {
+        return mCornerSize;
+    }
+
     public void setBackgroundColor(int color) {
         mBackgroundPaint.setColor(color);
+    }
+
+    public int getBackgroundColor() {
+        return mBackgroundPaint.getColor();
     }
 
     long time = -1;
