@@ -6,18 +6,18 @@
         android:id="@+id/charHighHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        clock:backgroundColor="#ff0000"
+        clock:backgroundColor="#000000"
         clock:padding="10dp"
-        clock:textColor="#ffff00"
+        clock:textColor="#ffffff"
         clock:textSize="300dp" />
 
     <com.xenione.digit.CharView
         android:id="@+id/charLowHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        clock:backgroundColor="#ff0000"
+        clock:backgroundColor="#000000"
         clock:padding="10dp"
-        clock:textColor="#ffff00"
+        clock:textColor="#ffffff"
         clock:textSize="300dp" />
 
     <FrameLayout
@@ -40,18 +40,18 @@
         android:id="@+id/charHighMinute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        clock:backgroundColor="#ff0000"
+        clock:backgroundColor="#000000"
         clock:padding="10dp"
-        clock:textColor="#ffff00"
+        clock:textColor="#ffffff"
         clock:textSize="300dp" />
 
     <com.xenione.digit.CharView
         android:id="@+id/charLowMinute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        clock:backgroundColor="#ff0000"
+        clock:backgroundColor="#000000"
         clock:padding="10dp"
-        clock:textColor="#ffff00"
+        clock:textColor="#ffffff"
         clock:textSize="300dp" />
 
     <FrameLayout
@@ -75,17 +75,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        clock:backgroundColor="#ff0000"
+        clock:backgroundColor="#000000"
         clock:padding="10dp"
-        clock:textColor="#ffff00"
+        clock:textColor="#ffffff"
         clock:textSize="300dp" />
 
     <com.xenione.digit.CharView
         android:id="@+id/charLowSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        clock:backgroundColor="#ff0000"
+        clock:backgroundColor="#000000"
         clock:padding="10dp"
-        clock:textColor="#ffff00"
+        clock:textColor="#ffffff"
         clock:textSize="300dp" />
 </merge>

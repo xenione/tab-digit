@@ -102,6 +102,7 @@ public class CharView extends View implements Runnable {
                 backgroundColor = ta.getColor(attr, 1);
             }
         }
+        ta.recycle();
 
         if (padding > 0) {
             mPadding = padding;
@@ -157,14 +158,18 @@ public class CharView extends View implements Runnable {
         mMiddleTab = new Tab();
         tabs.add(mMiddleTab);
 
-        setChar(0);
+        setInternalChar(0);
     }
 
     public void setChar(int index) {
+        setInternalChar(index);
+        invalidate();
+    }
+
+    private void setInternalChar(int index) {
         for (Tab tab : tabs) {
             tab.setChar(index);
         }
-        invalidate();
     }
 
     @Override
@@ -389,9 +394,6 @@ public class CharView extends View implements Runnable {
 
         private Matrix measuredMatrixWidth = new Matrix();
 
-        public Tab() {
-            initPaints();
-        }
 
         public void measure(int width, int height) {
             Rect area = new Rect(-width / 2, 0, width / 2, height / 2);

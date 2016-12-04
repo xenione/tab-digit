@@ -30,7 +30,7 @@ public class ConfigFragment extends Fragment implements Runnable {
         View view = inflater.inflate(R.layout.config_fragment, container, false);
         charView1 = (CharView) view.findViewById(R.id.charView1);
         assert charView1 != null;
-        charView1.postDelayed(this, 1000);
+        ViewCompat.postOnAnimationDelayed(charView1, this, 1000);
 
         SeekBar textSizeBar = (SeekBar) view.findViewById(R.id.size_bar);
         assert textSizeBar != null;

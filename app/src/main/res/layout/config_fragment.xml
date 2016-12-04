@@ -81,9 +81,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        custom:backgroundColor="#ff0000"
+        custom:backgroundColor="#000000"
         custom:padding="10dp"
-        custom:textColor="#ffff00"
-        custom:textSize="90dp" />
+        custom:textColor="#ffffff"
+        custom:textSize="60dp" />
 
 </LinearLayout>
