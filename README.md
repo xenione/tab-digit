@@ -2,6 +2,11 @@
 
 ![tab-digit](https://cloud.githubusercontent.com/assets/4138527/20869273/258ed640-ba6f-11e6-892c-a5986896134c.gif)
 
+this is what you can do with Tab digit
+
+![clock](https://cloud.githubusercontent.com/assets/4138527/20869514/f503a208-ba73-11e6-800b-802d493e1a86.gif)
+
+
 Add it on your project:
 
 Gradle:
