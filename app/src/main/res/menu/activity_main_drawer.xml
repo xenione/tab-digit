@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_rightswipe"
+            android:id="@+id/nav_config"
             android:icon="@android:drawable/ic_menu_slideshow"
             android:title="Config" />
         <item
-            android:id="@+id/nav_half_swipe"
+            android:id="@+id/nav_clock"
             android:icon="@android:drawable/ic_menu_slideshow"
             android:title="Clock" />
 

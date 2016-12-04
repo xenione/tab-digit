@@ -29,7 +29,7 @@ public class CharView extends View implements Runnable {
     private int state = LOWER_POSITION;
 
     long mTime = -1;
-    float mElapsedTime = 900.0f;
+    float mElapsedTime = 500.0f;
 
     private Tab mTopTab;
 
@@ -55,7 +55,7 @@ public class CharView extends View implements Runnable {
 
     private int mPadding = 0;
 
-    private final String[] mChars = new String[]{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    private char[] mChars = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
     public CharView(Context context) {
         this(context, null);
@@ -146,22 +146,24 @@ public class CharView extends View implements Runnable {
     private void initTabs() {
         // top Tab
         mTopTab = new Tab();
-        mTopTab.setChar(0);
         mTopTab.rotate(180);
-
         tabs.add(mTopTab);
 
         // bottom Tab
         mBottomTab = new Tab();
-        mBottomTab.setChar(0);
-
         tabs.add(mBottomTab);
 
         // middle Tab
         mMiddleTab = new Tab();
-        mMiddleTab.setChar(0);
-
         tabs.add(mMiddleTab);
+
+        setChar(0);
+    }
+
+    public void setChar(int index) {
+        for (Tab tab : tabs) {
+            tab.setChar(index);
+        }
     }
 
     @Override
@@ -231,6 +233,21 @@ public class CharView extends View implements Runnable {
         requestLayout();
     }
 
+    /**
+     * Sets chars that are going to be displayed.
+     * Note: <b>That only one digit is allow per character.</b>
+     *
+     * @param chars
+     */
+    public void setChars(char[] chars) {
+        mChars = chars;
+    }
+
+    public char[]  getChars() {
+        return mChars;
+    }
+
+
     public void setDividerColor(int color) {
         mDividerPaint.setColor(color);
     }
@@ -281,7 +298,7 @@ public class CharView extends View implements Runnable {
     protected void onDraw(Canvas canvas) {
         drawTabs(canvas);
         drawDivider(canvas);
-        ViewCompat.postOnAnimation(this, this);
+        ViewCompat.postOnAnimationDelayed(this, this, 30);
     }
 
     @Override
@@ -417,7 +434,7 @@ public class CharView extends View implements Runnable {
             }
             applyTransformation(canvas, mModelViewMatrix);
             canvas.clipRect(clip);
-            canvas.drawText(mChars[currIndex], 0, 1, -textBounds.centerX(), -textBounds.centerY(), mNumberPaint);
+            canvas.drawText(Character.toString(mChars[currIndex]), 0, 1, -textBounds.centerX(), -textBounds.centerY(), mNumberPaint);
             canvas.restore();
         }
 

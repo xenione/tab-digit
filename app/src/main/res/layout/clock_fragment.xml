@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/clock"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charHighHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:backgroundColor="#ff0000"
+        custom:padding="10dp"
+        custom:textColor="#ffff00"
+        custom:textSize="300dp" />
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charLowHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:backgroundColor="#ff0000"
+        custom:padding="10dp"
+        custom:textColor="#ffff00"
+        custom:textSize="300dp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=":"
+            android:layout_gravity="center_vertical"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charHighMinute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:backgroundColor="#ff0000"
+        custom:padding="10dp"
+        custom:textColor="#ffff00"
+        custom:textSize="300dp" />
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charLowMinute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:backgroundColor="#ff0000"
+        custom:padding="10dp"
+        custom:textColor="#ffff00"
+        custom:textSize="300dp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=":"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charHighSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        custom:backgroundColor="#ff0000"
+        custom:padding="10dp"
+        custom:textColor="#ffff00"
+        custom:textSize="300dp" />
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charLowSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        custom:backgroundColor="#ff0000"
+        custom:padding="10dp"
+        custom:textColor="#ffff00"
+        custom:textSize="300dp" />
+
+</LinearLayout>

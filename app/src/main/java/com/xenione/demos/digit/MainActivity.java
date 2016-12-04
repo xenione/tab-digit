@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        assert navigationView != null;
         navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView.setCheckedItem(R.id.nav_rightswipe);
+        navigationView.setCheckedItem(R.id.nav_config);
     }
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -52,9 +52,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         switch(id){
-
+            case R.id.nav_config:{
+                showFragment(ConfigFragment.newInstance(), ConfigFragment.TAG);
+                break;
+            }
+            case R.id.nav_clock:{
+                showFragment(ClockFragment.newInstance(), ClockFragment.TAG);
+            }
         }
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
