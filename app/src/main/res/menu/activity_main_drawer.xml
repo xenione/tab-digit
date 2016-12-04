@@ -5,18 +5,13 @@
             android:id="@+id/nav_config"
             android:icon="@android:drawable/ic_menu_slideshow"
             android:title="Config" />
-        <item
-            android:id="@+id/nav_clock"
-            android:icon="@android:drawable/ic_menu_slideshow"
-            android:title="Clock" />
-
     </group>
-    <item android:title="Communicate">
+    <item android:title="Some Examples">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@android:drawable/ic_menu_share"
-                android:title="Share" />
+                android:id="@+id/nav_clock"
+                android:icon="@android:drawable/ic_menu_slideshow"
+                android:title="Clock" />
         </menu>
     </item>
 

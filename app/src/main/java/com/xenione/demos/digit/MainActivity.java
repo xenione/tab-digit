@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch(id){
-            case R.id.nav_config:{
+        switch (id) {
+            case R.id.nav_config: {
                 showFragment(ConfigFragment.newInstance(), ConfigFragment.TAG);
                 break;
             }
-            case R.id.nav_clock:{
+            case R.id.nav_clock: {
                 showFragment(ClockFragment.newInstance(), ClockFragment.TAG);
             }
         }
