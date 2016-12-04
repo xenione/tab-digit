@@ -1,4 +1,4 @@
-package com.xenione.demos.digit;
+package com.xenione.digit;
 
 import android.graphics.Camera;
 import android.graphics.Matrix;

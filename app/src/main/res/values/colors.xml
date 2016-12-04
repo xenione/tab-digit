@@ -3,4 +3,9 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">@android:color/white</color>
+
+
+    <color name="header_nav">@color/colorAccent</color>
+    <color name="placeholder">@color/colorAccent</color>
 </resources>

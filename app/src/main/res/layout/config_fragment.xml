@@ -75,14 +75,15 @@
 
     </LinearLayout>
 
-    <com.xenione.demos.digit.CharView
+    <com.xenione.digit.CharView
         android:id="@+id/charView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="1"
-        custom:backgroundColor="#000000"
+        custom:backgroundColor="#ff0000"
         custom:padding="10dp"
-        custom:textSize="40dp" />
+        custom:textColor="#ffff00"
+        custom:textSize="90dp" />
 
 </LinearLayout>

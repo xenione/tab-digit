@@ -1,126 +1,72 @@
 package com.xenione.demos.digit;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.SeekBar;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    private CharView charView1;
+    private DrawerLayout drawer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main_activity);
 
-        charView1 = (CharView) findViewById(R.id.charView1);
-        assert charView1 != null;
-        charView1.start();
+        showFragment(ConfigFragment.newInstance(), ConfigFragment.TAG);
 
-        SeekBar textSizeBar = (SeekBar) findViewById(R.id.size_bar);
-        assert textSizeBar != null;
-        textSizeBar.setOnSeekBarChangeListener(mTextSizeHandler);
-        textSizeBar.setProgress(charView1.getTextSize());
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
-        SeekBar paddingSizeBar = (SeekBar) findViewById(R.id.padding_size_bar);
-        assert paddingSizeBar != null;
-        paddingSizeBar.setOnSeekBarChangeListener(mPaddingSizeHandler);
-        paddingSizeBar.setProgress(charView1.getPadding());
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
-        SeekBar cornerSizeBar = (SeekBar) findViewById(R.id.corner_size_bar);
-        assert cornerSizeBar != null;
-        cornerSizeBar.setOnSeekBarChangeListener(mCornerSizeHandler);
-        cornerSizeBar.setProgress(charView1.getCornerSize());
-
-        ColorChooserView backgroundColorChooserView = (ColorChooserView) findViewById(R.id.Background_color_chooser);
-        assert backgroundColorChooserView != null;
-        backgroundColorChooserView.setColor(charView1.getBackgroundColor());
-        backgroundColorChooserView.setTitle("Background Color Chooser");
-        backgroundColorChooserView.setOnColorChooserSelectListener(mOnBackgroundColorSelectHandler);
-
-        ColorChooserView textColorChooserView = (ColorChooserView) findViewById(R.id.text_color_chooser);
-        assert textColorChooserView != null;
-        textColorChooserView.setColor(charView1.getTextColor());
-        textColorChooserView.setTitle("Text Color Chooser");
-        textColorChooserView.setOnColorChooserSelectListener(mTextColorSelectHandler);
-
+        navigationView.setCheckedItem(R.id.nav_rightswipe);
     }
 
-    public ColorChooserView.OnColorChooserSelectListener mTextColorSelectHandler = new ColorChooserView.OnColorChooserSelectListener() {
-
-        @Override
-        public void onColorPickerViewSelected(int color) {
-            charView1.setTextColor(color);
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
         }
-    };
+    }
 
-    private ColorChooserView.OnColorChooserSelectListener mOnBackgroundColorSelectHandler = new ColorChooserView.OnColorChooserSelectListener() {
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        int id = item.getItemId();
 
-        @Override
-        public void onColorPickerViewSelected(int color) {
-            charView1.setBackgroundColor(color);
-        }
-    };
-
-
-    private SeekBar.OnSeekBarChangeListener mTextSizeHandler = new SeekBar.OnSeekBarChangeListener() {
-
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if (fromUser) {
-                charView1.setTextSize(progress);
-            }
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
+        switch(id){
 
         }
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
 
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
+    private void showFragment(Fragment fragment, String tag) {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment prevFragment = fm.findFragmentByTag(tag);
+        if (prevFragment != null) {
+            return;
         }
-    };
-
-    private SeekBar.OnSeekBarChangeListener mPaddingSizeHandler = new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if(fromUser) {
-                charView1.setPadding(progress);
-            }
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
-    };
-
-    private SeekBar.OnSeekBarChangeListener mCornerSizeHandler = new SeekBar.OnSeekBarChangeListener() {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            if(fromUser) {
-                charView1.setCornerSize((int) (progress * 0.3f));
-            }
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
-    };
-
-
-
+        FragmentTransaction tr = fm.beginTransaction();
+        tr.replace(R.id.frame_container, fragment, tag)
+                .commit();
+    }
 }
