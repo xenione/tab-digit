@@ -3,6 +3,7 @@ package com.xenione.demos.digit;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -139,6 +140,6 @@ public class ConfigFragment extends Fragment implements Runnable {
     @Override
     public void run() {
         charView1.start();
-        charView1.postDelayed(this, 1000);
+        ViewCompat.postOnAnimationDelayed(charView1, this, 1000);
     }
 }

@@ -29,7 +29,7 @@ public class CharView extends View implements Runnable {
     private int state = LOWER_POSITION;
 
     long mTime = -1;
-    float mElapsedTime = 500.0f;
+    float mElapsedTime = 1000.0f;
 
     private Tab mTopTab;
 
@@ -164,6 +164,7 @@ public class CharView extends View implements Runnable {
         for (Tab tab : tabs) {
             tab.setChar(index);
         }
+        invalidate();
     }
 
     @Override
@@ -282,12 +283,9 @@ public class CharView extends View implements Runnable {
     }
 
     public void start() {
+        makeSureCycleIsClosed();
         mTime = System.currentTimeMillis();
         invalidate();
-    }
-
-    public void stop() {
-        mTime = -1;
     }
 
     public void elapsedTime(float elapsedTime) {
@@ -298,7 +296,7 @@ public class CharView extends View implements Runnable {
     protected void onDraw(Canvas canvas) {
         drawTabs(canvas);
         drawDivider(canvas);
-        ViewCompat.postOnAnimationDelayed(this, this, 30);
+        ViewCompat.postOnAnimationDelayed(this, this, 40);
     }
 
     @Override
@@ -308,22 +306,18 @@ public class CharView extends View implements Runnable {
         }
         switch (state) {
             case LOWER_POSITION: {
-                state = MIDDLE_POSITION;
-                mBottomTab.next();
+                nextBottomTab();
                 break;
             }
             case MIDDLE_POSITION: {
                 if (mAlpha > 90) {
-                    mMiddleTab.next();
-                    state = UPPER_POSITION;
+                    nextMiddleTab();
                 }
                 break;
             }
             case UPPER_POSITION: {
                 if (mAlpha >= 180) {
-                    mTopTab.next();
-                    state = LOWER_POSITION;
-                    mTime = -1;
+                    nextTopTab();
                 }
                 break;
             }
@@ -335,6 +329,42 @@ public class CharView extends View implements Runnable {
             mMiddleTab.rotate(mAlpha);
         }
         invalidate();
+    }
+
+    private void nextBottomTab(){
+        mBottomTab.next();
+        state = MIDDLE_POSITION;
+    }
+
+    private void nextMiddleTab() {
+        mMiddleTab.next();
+        state = UPPER_POSITION;
+    }
+
+    private void nextTopTab() {
+        mTopTab.next();
+        mTime = -1;
+        state = LOWER_POSITION;
+    }
+
+    public void sync() {
+        makeSureCycleIsClosed();
+        invalidate();
+    }
+
+    private void makeSureCycleIsClosed() {
+        if (mTime == -1) {
+            return;
+        }
+        switch (state) {
+            case LOWER_POSITION: {
+                nextMiddleTab();
+            }
+            case UPPER_POSITION: {
+                nextTopTab();
+            }
+        }
+        mMiddleTab.rotate(180);
     }
 
     public class Tab {

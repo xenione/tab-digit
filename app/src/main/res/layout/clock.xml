@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:clock="http://schemas.android.com/apk/res-auto">
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charHighHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        clock:backgroundColor="#ff0000"
+        clock:padding="10dp"
+        clock:textColor="#ffff00"
+        clock:textSize="300dp" />
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charLowHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        clock:backgroundColor="#ff0000"
+        clock:padding="10dp"
+        clock:textColor="#ffff00"
+        clock:textSize="300dp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text=":"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charHighMinute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        clock:backgroundColor="#ff0000"
+        clock:padding="10dp"
+        clock:textColor="#ffff00"
+        clock:textSize="300dp" />
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charLowMinute"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        clock:backgroundColor="#ff0000"
+        clock:padding="10dp"
+        clock:textColor="#ffff00"
+        clock:textSize="300dp" />
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=":"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+    </FrameLayout>
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charHighSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        clock:backgroundColor="#ff0000"
+        clock:padding="10dp"
+        clock:textColor="#ffff00"
+        clock:textSize="300dp" />
+
+    <com.xenione.digit.CharView
+        android:id="@+id/charLowSecond"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        clock:backgroundColor="#ff0000"
+        clock:padding="10dp"
+        clock:textColor="#ffff00"
+        clock:textSize="300dp" />
+</merge>
