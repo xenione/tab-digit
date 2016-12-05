@@ -11,8 +11,30 @@ Add it on your project:
 
 Gradle:
 ```java 
-compile 'com.xenione.libs:tab-digit:1.0.1'
+compile 'com.xenione.libs:tab-digit:1.0.2'
 ```
+
+Add tabdigit in your layout, you can set attributes like background or text color, text size and padding through xml as shown.
+
+```java 
+ <com.xenione.digit.TabDigit
+     xmlns:digit="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/charView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        digit:backgroundColor="#000000"
+        digit:padding="10dp"
+        digit:textColor="#ffffff"
+        digit:textSize="60dp" />
+  ```      
+
+start animation calling start.
+
+```java 
+tabDigit1.start();
+  ```  
 
 
 # License

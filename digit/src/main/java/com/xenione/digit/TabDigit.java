@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Created by Eugeni on 16/10/2016.
  */
-public class CharView extends View implements Runnable {
+public class TabDigit extends View implements Runnable {
 
     private final static int LOWER_POSITION = 0;
     private final static int MIDDLE_POSITION = 1;
@@ -57,21 +57,21 @@ public class CharView extends View implements Runnable {
 
     private char[] mChars = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-    public CharView(Context context) {
+    public TabDigit(Context context) {
         this(context, null);
     }
 
-    public CharView(Context context, AttributeSet attrs) {
+    public TabDigit(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CharView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public TabDigit(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public CharView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public TabDigit(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs);
     }
@@ -86,19 +86,19 @@ public class CharView extends View implements Runnable {
         int textColor = 1;
         int backgroundColor = 1;
 
-        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.CharView, 0, 0);
+        TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TabDigit, 0, 0);
         final int num = ta.getIndexCount();
         for (int i = 0; i < num; i++) {
             int attr = ta.getIndex(i);
-            if (attr == R.styleable.CharView_textSize) {
+            if (attr == R.styleable.TabDigit_textSize) {
                 textSize = ta.getDimensionPixelSize(attr, -1);
-            } else if (attr == R.styleable.CharView_padding) {
+            } else if (attr == R.styleable.TabDigit_padding) {
                 padding = ta.getDimensionPixelSize(attr, -1);
-            } else if (attr == R.styleable.CharView_cornerSize) {
+            } else if (attr == R.styleable.TabDigit_cornerSize) {
                 cornerSize = ta.getDimensionPixelSize(attr, -1);
-            } else if (attr == R.styleable.CharView_textColor) {
+            } else if (attr == R.styleable.TabDigit_textColor) {
                 textColor = ta.getColor(attr, 1);
-            } else if (attr == R.styleable.CharView_backgroundColor) {
+            } else if (attr == R.styleable.TabDigit_backgroundColor) {
                 backgroundColor = ta.getColor(attr, 1);
             }
         }

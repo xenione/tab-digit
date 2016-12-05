@@ -75,7 +75,7 @@
 
     </LinearLayout>
 
-    <com.xenione.digit.CharView
+    <com.xenione.digit.TabDigit
         android:id="@+id/charView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

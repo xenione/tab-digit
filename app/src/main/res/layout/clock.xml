@@ -2,7 +2,7 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:clock="http://schemas.android.com/apk/res-auto">
 
-    <com.xenione.digit.CharView
+    <com.xenione.digit.TabDigit
         android:id="@+id/charHighHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -11,7 +11,7 @@
         clock:textColor="#ffffff"
         clock:textSize="300dp" />
 
-    <com.xenione.digit.CharView
+    <com.xenione.digit.TabDigit
         android:id="@+id/charLowHour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
             android:textStyle="bold" />
     </FrameLayout>
 
-    <com.xenione.digit.CharView
+    <com.xenione.digit.TabDigit
         android:id="@+id/charHighMinute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         clock:textColor="#ffffff"
         clock:textSize="300dp" />
 
-    <com.xenione.digit.CharView
+    <com.xenione.digit.TabDigit
         android:id="@+id/charLowMinute"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -70,7 +70,7 @@
             android:textStyle="bold" />
     </FrameLayout>
 
-    <com.xenione.digit.CharView
+    <com.xenione.digit.TabDigit
         android:id="@+id/charHighSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,7 +80,7 @@
         clock:textColor="#ffffff"
         clock:textSize="300dp" />
 
-    <com.xenione.digit.CharView
+    <com.xenione.digit.TabDigit
         android:id="@+id/charLowSecond"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

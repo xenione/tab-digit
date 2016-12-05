@@ -8,7 +8,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.xenione.digit.CharView;
+import com.xenione.digit.TabDigit;
 
 import java.util.Calendar;
 
@@ -21,12 +21,12 @@ public class ClockView extends LinearLayout implements Runnable{
 
     private static final char[] SEXAGISIMAL = new char[]{'0', '1', '2', '3', '4', '5'};
 
-    private CharView mCharHighSecond;
-    private CharView mCharLowSecond;
-    private CharView mCharHighMinute;
-    private CharView mCharLowMinute;
-    private CharView mCharHighHour;
-    private CharView mCharLowHour;
+    private TabDigit mCharHighSecond;
+    private TabDigit mCharLowSecond;
+    private TabDigit mCharHighMinute;
+    private TabDigit mCharLowMinute;
+    private TabDigit mCharHighHour;
+    private TabDigit mCharLowHour;
     private View mClock = this;
 
     private boolean mPause = true;
@@ -60,12 +60,12 @@ public class ClockView extends LinearLayout implements Runnable{
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        mCharHighSecond = (CharView) findViewById(R.id.charHighSecond);
-        mCharLowSecond = (CharView) findViewById(R.id.charLowSecond);
-        mCharHighMinute = (CharView) findViewById(R.id.charHighMinute);
-        mCharLowMinute = (CharView) findViewById(R.id.charLowMinute);
-        mCharHighHour = (CharView) findViewById(R.id.charHighHour);
-        mCharLowHour = (CharView) findViewById(R.id.charLowHour);
+        mCharHighSecond = (TabDigit) findViewById(R.id.charHighSecond);
+        mCharLowSecond = (TabDigit) findViewById(R.id.charLowSecond);
+        mCharHighMinute = (TabDigit) findViewById(R.id.charHighMinute);
+        mCharLowMinute = (TabDigit) findViewById(R.id.charLowMinute);
+        mCharHighHour = (TabDigit) findViewById(R.id.charHighHour);
+        mCharLowHour = (TabDigit) findViewById(R.id.charLowHour);
 
         mCharHighSecond.setTextSize(100);
         mCharHighSecond.setChars(SEXAGISIMAL);
