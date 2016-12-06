@@ -1,5 +1,7 @@
 # Tab Digit
 
+A Flip Clock Libray.
+
 ![tab-digit](https://cloud.githubusercontent.com/assets/4138527/20869273/258ed640-ba6f-11e6-892c-a5986896134c.gif)
 
 this is what you can do with Tab digit
@@ -30,7 +32,7 @@ Add tabdigit in your layout, you can set attributes like background or text colo
         digit:textSize="60dp" />
   ```      
 
-start animation calling start.
+start animation calling start().
 
 ```java 
 tabDigit1.start();
