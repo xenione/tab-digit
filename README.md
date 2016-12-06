@@ -19,7 +19,7 @@ Add tabdigit in your layout, you can set attributes like background or text colo
 ```java 
  <com.xenione.digit.TabDigit
      xmlns:digit="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/charView1"
+        android:id="@+id/tabDigit1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -35,7 +35,17 @@ start animation calling start.
 ```java 
 tabDigit1.start();
   ```  
+Increase digit every second:
 
+```java 
+ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
+
+@Override
+    public void run() {
+        tabDigit1.start();
+        ViewCompat.postOnAnimationDelayed(tabDigit1, this, 1000);
+    }
+  ```  
 
 # License
 -------
