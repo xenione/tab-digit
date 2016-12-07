@@ -473,9 +473,7 @@ public class TabDigit extends View implements Runnable {
         private void applyTransformation(Canvas canvas, Matrix matrix) {
             mModelViewProjectionMatrix.reset();
             mModelViewProjectionMatrix.setConcat(mProjectionMatrix, matrix);
-            mModelViewProjectionMatrix.setConcat(mProjectionMatrix, mModelViewMatrix);
             canvas.concat(mModelViewProjectionMatrix);
         }
     }
-
 }
