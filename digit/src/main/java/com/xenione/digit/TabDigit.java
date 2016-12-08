@@ -380,61 +380,53 @@ public class TabDigit extends View implements Runnable {
 
         private final Matrix mRotationModelViewMatrix = new Matrix();
 
-        private final RectF startBounds = new RectF();
+        private final RectF mStartBounds = new RectF();
 
-        private final RectF endBounds = new RectF();
+        private final RectF mEndBounds = new RectF();
 
-        private final Rect textBounds = new Rect();
-
-        private int currIndex = 0;
+        private int mCurrIndex = 0;
 
         private int mAlpha;
 
-        private Matrix measuredMatrixHeight = new Matrix();
+        private Matrix mMeasuredMatrixHeight = new Matrix();
 
-        private Matrix measuredMatrixWidth = new Matrix();
+        private Matrix mMeasuredMatrixWidth = new Matrix();
 
 
         public void measure(int width, int height) {
             Rect area = new Rect(-width / 2, 0, width / 2, height / 2);
-            startBounds.set(area);
-            endBounds.set(area);
-            endBounds.offset(0, -height / 2);
-
-            calculateTextSize();
+            mStartBounds.set(area);
+            mEndBounds.set(area);
+            mEndBounds.offset(0, -height / 2);
         }
 
         public int maxWith() {
-            RectF rect = new RectF(startBounds);
+            RectF rect = new RectF(mStartBounds);
             Matrix projectionMatrix = new Matrix();
-            MatrixHelper.translate(projectionMatrix, startBounds.left, -startBounds.top, 0);
-            measuredMatrixWidth.reset();
-            measuredMatrixWidth.setConcat(projectionMatrix, MatrixHelper.ROTATE_X_90);
-            measuredMatrixWidth.mapRect(rect);
+            MatrixHelper.translate(projectionMatrix, mStartBounds.left, -mStartBounds.top, 0);
+            mMeasuredMatrixWidth.reset();
+            mMeasuredMatrixWidth.setConcat(projectionMatrix, MatrixHelper.ROTATE_X_90);
+            mMeasuredMatrixWidth.mapRect(rect);
             return (int) rect.width();
         }
 
         public int maxHeight() {
-            RectF rect = new RectF(startBounds);
+            RectF rect = new RectF(mStartBounds);
             Matrix projectionMatrix = new Matrix();
-            measuredMatrixHeight.reset();
-            measuredMatrixHeight.setConcat(projectionMatrix, MatrixHelper.ROTATE_X_0);
-            measuredMatrixHeight.mapRect(rect);
+            mMeasuredMatrixHeight.reset();
+            mMeasuredMatrixHeight.setConcat(projectionMatrix, MatrixHelper.ROTATE_X_0);
+            mMeasuredMatrixHeight.mapRect(rect);
             return (int) rect.height();
         }
 
-        private void calculateTextSize() {
-            mNumberPaint.getTextBounds("8", 0, 1, textBounds);
-        }
-
         public void setChar(int index) {
-            currIndex = index > mChars.length ? 0 : index;
+            mCurrIndex = index > mChars.length ? 0 : index;
         }
 
         public void next() {
-            currIndex++;
-            if (currIndex >= mChars.length) {
-                currIndex = 0;
+            mCurrIndex++;
+            if (mCurrIndex >= mChars.length) {
+                mCurrIndex = 0;
             }
         }
 
@@ -452,21 +444,21 @@ public class TabDigit extends View implements Runnable {
             canvas.save();
             mModelViewMatrix.set(mRotationModelViewMatrix);
             applyTransformation(canvas, mModelViewMatrix);
-            canvas.drawRoundRect(startBounds, mCornerSize, mCornerSize, mBackgroundPaint);
+            canvas.drawRoundRect(mStartBounds, mCornerSize, mCornerSize, mBackgroundPaint);
             canvas.restore();
         }
 
         private void drawText(Canvas canvas) {
             canvas.save();
             mModelViewMatrix.set(mRotationModelViewMatrix);
-            RectF clip = startBounds;
+            RectF clip = mStartBounds;
             if (mAlpha > 90) {
                 mModelViewMatrix.setConcat(mModelViewMatrix, MatrixHelper.MIRROR_X);
-                clip = endBounds;
+                clip = mEndBounds;
             }
             applyTransformation(canvas, mModelViewMatrix);
             canvas.clipRect(clip);
-            canvas.drawText(Character.toString(mChars[currIndex]), 0, 1, -textBounds.centerX(), -textBounds.centerY(), mNumberPaint);
+            canvas.drawText(Character.toString(mChars[mCurrIndex]), 0, 1, -mTextMeasured.centerX(), -mTextMeasured.centerY(), mNumberPaint);
             canvas.restore();
         }
 
