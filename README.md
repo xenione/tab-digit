@@ -1,6 +1,6 @@
 # Tab Digit
 
-A Flip Clock Libray.
+A Flip Clock Libray.Have a look at the demo app available on [google play](https://play.google.com/store/apps/details?id=com.xenione.libs.digit)
 
 ![tab-digit](https://cloud.githubusercontent.com/assets/4138527/20869273/258ed640-ba6f-11e6-892c-a5986896134c.gif)
 
