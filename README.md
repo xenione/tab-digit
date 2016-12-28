@@ -1,6 +1,6 @@
 # Tab Digit
 
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Tab%20digit-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4786)
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-Tab%20digit-brightgreen.svg?style=flat)](http://android-arsenal.com/details/1/4786)  [![Download](https://api.bintray.com/packages/xenione/maven/tab-digit/images/download.svg) ](https://bintray.com/xenione/maven/tab-digit/_latestVersion)
 
 A Flip Clock Libray.Have a look at the demo app available on [google play](https://play.google.com/store/apps/details?id=com.xenione.libs.digit)
 
