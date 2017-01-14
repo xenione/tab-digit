@@ -59,6 +59,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_clock: {
                 showFragment(ClockFragment.newInstance(), ClockFragment.TAG);
             }
+            case R.id.nav_countdown: {
+                showFragment(CountdownFragment.newInstance(), CountdownFragment.TAG);
+            }
         }
         drawer.closeDrawer(GravityCompat.START);
         return true;
