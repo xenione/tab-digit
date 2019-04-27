@@ -26,7 +26,13 @@ public class TabDigit extends View implements Runnable {
     private final static int MIDDLE_POSITION = 1;
     private final static int UPPER_POSITION = 2;
 
-    private int state = LOWER_POSITION;
+    /*
+     * false: rotate upwards
+     * true: rotate downwards
+     */
+    private boolean mReverseRotation = false;
+
+    private int state = mReverseRotation ? UPPER_POSITION : LOWER_POSITION;
 
     long mTime = -1;
     float mElapsedTime = 1000.0f;
@@ -85,6 +91,7 @@ public class TabDigit extends View implements Runnable {
         int cornerSize = -1;
         int textColor = 1;
         int backgroundColor = 1;
+        boolean reverseRotation = false;
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TabDigit, 0, 0);
         final int num = ta.getIndexCount();
@@ -100,6 +107,8 @@ public class TabDigit extends View implements Runnable {
                 textColor = ta.getColor(attr, 1);
             } else if (attr == R.styleable.TabDigit_backgroundColor) {
                 backgroundColor = ta.getColor(attr, 1);
+            } else if (attr == R.styleable.TabDigit_reverseRotation) {
+                reverseRotation = ta.getBoolean(attr, false);
             }
         }
         ta.recycle();
@@ -123,6 +132,9 @@ public class TabDigit extends View implements Runnable {
         if (backgroundColor < 1) {
             mBackgroundPaint.setColor(backgroundColor);
         }
+
+        mReverseRotation = reverseRotation;
+        state = mReverseRotation ? UPPER_POSITION : LOWER_POSITION;
 
         initTabs();
     }
@@ -156,6 +168,9 @@ public class TabDigit extends View implements Runnable {
 
         // middle Tab
         mMiddleTab = new Tab();
+        if (mReverseRotation) {
+            mMiddleTab.rotate(180);
+        }
         tabs.add(mMiddleTab);
 
         setInternalChar(0);
@@ -311,17 +326,25 @@ public class TabDigit extends View implements Runnable {
         }
         switch (state) {
             case LOWER_POSITION: {
-                nextBottomTab();
+                if (!mReverseRotation || mAlpha <= 0) {
+                    nextBottomTab();
+                }
                 break;
             }
             case MIDDLE_POSITION: {
-                if (mAlpha > 90) {
-                    nextMiddleTab();
+                if (mReverseRotation) {
+                    if (mAlpha < 90) {
+                        nextMiddleTab();
+                    }
+                } else {
+                    if (mAlpha > 90) {
+                        nextMiddleTab();
+                    }
                 }
                 break;
             }
             case UPPER_POSITION: {
-                if (mAlpha >= 180) {
+                if (mAlpha >= 180 || mReverseRotation) {
                     nextTopTab();
                 }
                 break;
@@ -331,6 +354,9 @@ public class TabDigit extends View implements Runnable {
         if (mTime != -1) {
             long delta = (System.currentTimeMillis() - mTime);
             mAlpha = (int) (180 * (1 - (1 * mElapsedTime - delta) / (1 * mElapsedTime)));
+            if (mReverseRotation) {
+                mAlpha = 180 - mAlpha;
+            }
             mMiddleTab.rotate(mAlpha);
         }
         invalidate();
@@ -338,18 +364,31 @@ public class TabDigit extends View implements Runnable {
 
     private void nextBottomTab(){
         mBottomTab.next();
-        state = MIDDLE_POSITION;
+        if (mReverseRotation) {
+            mTime = -1; // animation finished
+            state = UPPER_POSITION;
+        } else {
+            state = MIDDLE_POSITION;
+        }
     }
 
     private void nextMiddleTab() {
         mMiddleTab.next();
-        state = UPPER_POSITION;
+        if (mReverseRotation) {
+            state = LOWER_POSITION;
+        } else {
+            state = UPPER_POSITION;
+        }
     }
 
     private void nextTopTab() {
         mTopTab.next();
-        mTime = -1;
-        state = LOWER_POSITION;
+        if (mReverseRotation) {
+            state = MIDDLE_POSITION;
+        } else {
+            mTime = -1; // animation finished
+            state = LOWER_POSITION;
+        }
     }
 
     public void sync() {
@@ -363,10 +402,16 @@ public class TabDigit extends View implements Runnable {
         }
         switch (state) {
             case LOWER_POSITION: {
-                nextMiddleTab();
+                if (!mReverseRotation) {
+                    nextMiddleTab();
+                } else {
+                    nextBottomTab();
+                }
             }
             case UPPER_POSITION: {
-                nextTopTab();
+                if (!mReverseRotation) {
+                    nextTopTab();
+                }
             }
         }
         mMiddleTab.rotate(180);
