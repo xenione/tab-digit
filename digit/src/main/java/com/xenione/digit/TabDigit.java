@@ -22,14 +22,11 @@ import java.util.List;
  */
 public class TabDigit extends View implements Runnable {
 
-    private final static int LOWER_POSITION = 0;
-    private final static int MIDDLE_POSITION = 1;
-    private final static int UPPER_POSITION = 2;
-
-    private int state = LOWER_POSITION;
-
-    long mTime = -1;
-    float mElapsedTime = 1000.0f;
+    /*
+     * false: rotate upwards
+     * true: rotate downwards
+     */
+    private boolean mReverseRotation = false;
 
     private Tab mTopTab;
 
@@ -39,9 +36,9 @@ public class TabDigit extends View implements Runnable {
 
     private List<Tab> tabs = new ArrayList<>(3);
 
-    private Matrix mProjectionMatrix = new Matrix();
+    private AbstractTabAnimation tabAnimation;
 
-    private int mAlpha = 0;
+    private Matrix mProjectionMatrix = new Matrix();
 
     private int mCornerSize;
 
@@ -85,6 +82,7 @@ public class TabDigit extends View implements Runnable {
         int cornerSize = -1;
         int textColor = 1;
         int backgroundColor = 1;
+        boolean reverseRotation = false;
 
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TabDigit, 0, 0);
         final int num = ta.getIndexCount();
@@ -100,6 +98,8 @@ public class TabDigit extends View implements Runnable {
                 textColor = ta.getColor(attr, 1);
             } else if (attr == R.styleable.TabDigit_backgroundColor) {
                 backgroundColor = ta.getColor(attr, 1);
+            } else if (attr == R.styleable.TabDigit_reverseRotation) {
+                reverseRotation = ta.getBoolean(attr, false);
             }
         }
         ta.recycle();
@@ -123,6 +123,9 @@ public class TabDigit extends View implements Runnable {
         if (backgroundColor < 1) {
             mBackgroundPaint.setColor(backgroundColor);
         }
+
+        mReverseRotation = reverseRotation;
+        mReverseRotation = true;
 
         initTabs();
     }
@@ -157,6 +160,10 @@ public class TabDigit extends View implements Runnable {
         // middle Tab
         mMiddleTab = new Tab();
         tabs.add(mMiddleTab);
+
+        tabAnimation = mReverseRotation ? new TabAnimationDown(mTopTab, mBottomTab, mMiddleTab) : new TabAnimationUp(mTopTab, mBottomTab, mMiddleTab);
+
+        tabAnimation.initMiddleTab();
 
         setInternalChar(0);
     }
@@ -288,13 +295,8 @@ public class TabDigit extends View implements Runnable {
     }
 
     public void start() {
-        makeSureCycleIsClosed();
-        mTime = System.currentTimeMillis();
+        tabAnimation.start();
         invalidate();
-    }
-
-    public void elapsedTime(float elapsedTime) {
-        mElapsedTime = elapsedTime;
     }
 
     @Override
@@ -306,70 +308,13 @@ public class TabDigit extends View implements Runnable {
 
     @Override
     public void run() {
-        if (mTime == -1) {
-            return;
-        }
-        switch (state) {
-            case LOWER_POSITION: {
-                nextBottomTab();
-                break;
-            }
-            case MIDDLE_POSITION: {
-                if (mAlpha > 90) {
-                    nextMiddleTab();
-                }
-                break;
-            }
-            case UPPER_POSITION: {
-                if (mAlpha >= 180) {
-                    nextTopTab();
-                }
-                break;
-            }
-        }
-
-        if (mTime != -1) {
-            long delta = (System.currentTimeMillis() - mTime);
-            mAlpha = (int) (180 * (1 - (1 * mElapsedTime - delta) / (1 * mElapsedTime)));
-            mMiddleTab.rotate(mAlpha);
-        }
+        tabAnimation.run();
         invalidate();
-    }
-
-    private void nextBottomTab(){
-        mBottomTab.next();
-        state = MIDDLE_POSITION;
-    }
-
-    private void nextMiddleTab() {
-        mMiddleTab.next();
-        state = UPPER_POSITION;
-    }
-
-    private void nextTopTab() {
-        mTopTab.next();
-        mTime = -1;
-        state = LOWER_POSITION;
     }
 
     public void sync() {
-        makeSureCycleIsClosed();
+        tabAnimation.sync();
         invalidate();
-    }
-
-    private void makeSureCycleIsClosed() {
-        if (mTime == -1) {
-            return;
-        }
-        switch (state) {
-            case LOWER_POSITION: {
-                nextMiddleTab();
-            }
-            case UPPER_POSITION: {
-                nextTopTab();
-            }
-        }
-        mMiddleTab.rotate(180);
     }
 
     public class Tab {
@@ -468,4 +413,5 @@ public class TabDigit extends View implements Runnable {
             canvas.concat(mModelViewProjectionMatrix);
         }
     }
+
 }
