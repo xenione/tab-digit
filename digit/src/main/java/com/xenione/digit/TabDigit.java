@@ -125,7 +125,6 @@ public class TabDigit extends View implements Runnable {
         }
 
         mReverseRotation = reverseRotation;
-        mReverseRotation = true;
 
         initTabs();
     }

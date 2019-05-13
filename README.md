@@ -18,7 +18,7 @@ Gradle:
 compile 'com.xenione.libs:tab-digit:1.0.2'
 ```
 
-Add tabdigit in your layout, you can set attributes like background or text color, text size and padding through xml as shown.
+Add tabdigit in your layout, you can set attributes like background or text color, text size, padding and direction of rotation through xml as shown.
 
 ```java 
  <com.xenione.digit.TabDigit
@@ -31,7 +31,8 @@ Add tabdigit in your layout, you can set attributes like background or text colo
         digit:backgroundColor="#000000"
         digit:padding="10dp"
         digit:textColor="#ffffff"
-        digit:textSize="60dp" />
+        digit:textSize="60dp"
+        digit:reverseRotation="true" />
   ```      
 
 start animation calling start().
